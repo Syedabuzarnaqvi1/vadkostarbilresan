@@ -1,0 +1,218 @@
+/* --- CSS Variables and Root Styles --- */
+:root {
+    --bg-color: #f6f9fc;
+    --primary-text: #32325d;
+    --secondary-text: #525f7f;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(50, 50, 93, 0.1);
+    --shadow-hover-color: rgba(50, 50, 93, 0.15);
+    --border-color: #e6ebf1;
+    --accent-color-1: #6772e5;
+    --accent-color-2: #87bbfd;
+    --heading-font: 'Poppins', sans-serif;
+    --body-font: 'Inter', sans-serif;
+}
+
+/* --- General Body and Typography --- */
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--secondary-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--heading-font);
+    color: var(--primary-text);
+    font-weight: 800;
+}
+
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+p { margin-bottom: 1rem; }
+
+/* --- Header and Footer --- */
+.site-header {
+    background: var(--card-bg);
+    padding: 1.5rem 1rem;
+    box-shadow: var(--shadow-color) 0px 2px 4px;
+    text-align: center;
+}
+
+.site-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    color: var(--secondary-text);
+}
+
+/* --- Main Layout --- */
+.main-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+/* --- The Calculator Card --- */
+.calculator-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    box-shadow: var(--shadow-color) 0px 13px 27px -5px, rgba(0, 0, 0, 0.2) 0px 8px 16px -8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 3rem;
+}
+
+.calculator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover-color) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
+}
+
+.calculator-card h2 {
+    text-align: center;
+    margin: 0 0 2rem 0;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    color: var(--primary-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #f6f9fc;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color-1);
+    box-shadow: 0 0 0 2px rgba(103, 114, 229, 0.2);
+    background-color: var(--card-bg);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--body-font);
+    color: white;
+    background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Result Box Animation and Style --- */
+#result-box {
+    text-align: center;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: linear-gradient(45deg, #e6e9ff, #eff6ff);
+    color: var(--primary-text);
+}
+
+.result-box-hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-box-visible {
+    margin-top: 2rem;
+    max-height: 200px;
+    opacity: 1;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#result-box h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--secondary-text);
+}
+
+#result-text {
+    margin: 0;
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--accent-color-1);
+}
+
+/* --- Content Styling --- */
+.content-section {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+.example-box {
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--accent-color-2);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.example-box code {
+    display: block;
+    font-family: 'Menlo', 'Monaco', monospace;
+    font-size: 1rem;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+.example-box p { margin: 1rem 0 0 0; }
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    .main-container {
+        margin: 1.5rem auto;
+    }
+    .calculator-card, .content-section {
+        padding: 1.5rem;
+    }
+    .site-header h1 {
+        font-size: 1.5rem;
+    }
+    h2 { font-size: 1.5rem; }
+    #result-text { font-size: 2.25rem; }
+}
