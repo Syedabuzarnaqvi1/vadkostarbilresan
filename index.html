@@ -4,135 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Meta Title and Description for SEO -->
     <title>Vad kostar bilresan? Räkna ut bränslekostnad och dela notan</title>
     <meta name="description" content="Avancerad kalkylator för att beräkna den totala bränslekostnaden för din resa och dela upp den per person. Ange start, mål och hur många ni är i bilen.">
 
+    <!-- Link to CSS file -->
     <link rel="stylesheet" href="style.css">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 
+    <!-- Favicon (Route Emoji) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
 </head>
 <body>
 
-    <div class="main-container">
-        <form id="calculator-form" class="calculator-form">
-            
-            <div class="form-grid">
-                <div class="grid-col">
-                    <div class="input-group">
-                        <label for="start-location">Start</label>
-                        <input type="text" id="start-location" placeholder="t.ex. Stockholm">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="fuel-type">Drivmedel</label>
-                        <select id="fuel-type">
-                            <option value="19.50">Bensin</option>
-                            <option value="18.90">Diesel</option>
-                            <option value="25.00">El (kr/kWh)</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="consumption">Bränsleförbrukning</label>
-                        <div class="input-with-unit">
-                            <input type="number" step="0.1" id="consumption" placeholder="Ex: 6.7">
-                            <span>l/100km</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid-col">
-                    <div class="input-group">
-                        <label for="end-location">Mål</label>
-                        <input type="text" id="end-location" placeholder="t.ex. Göteborg">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="fuel-price">Bränslekostnad</label>
-                         <div class="input-with-unit">
-                            <input type="number" step="0.01" id="fuel-price" placeholder="16.89">
-                            <span>kr/l</span>
-                        </div>
-                    </div>
-
-                     <div class="input-group">
-                        <label for="people">Hur många i bilen?</label>
-                         <div class="input-with-unit">
-                            <input type="number" id="people" value="1" min="1">
-                            <span>personer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="distance-row">
-                 <div class="input-group distance-group">
-                    <label>Beräknat avstånd</label>
-                    <div class="input-with-unit">
-                        <input type="number" id="distance" readonly>
-                        <span>km</span>
-                    </div>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="round-trip">
-                    <label for="round-trip">Tur & Retur</label>
-                </div>
-            </div>
-
-            <div class="advanced-toggle">
-                <button type="button" id="advanced-toggle-btn">Avancerat <span class="arrow"></span></button>
-            </div>
-
-            <div id="advanced-section" class="advanced-section">
-                <div class="divider"></div>
-                <h4>Förarens betalning</h4>
-                <p class="info-text">Kanske ska föraren betala mindre än passagerarna eftersom hen körde hela vägen?</p>
-                <div class="slider-group">
-                    <input type="range" id="driver-share" min="0" max="100" value="100" class="slider">
-                    <div class="input-with-unit percent-input">
-                        <input type="number" id="driver-share-input" min="0" max="100" value="100">
-                        <span>%</span>
-                    </div>
-                </div>
-
-                <h4>Spara dina val</h4>
-                 <p class="info-text">Detta kommer bara sparas på den enheten du använder nu.</p>
-                 <div class="save-group">
-                     <button type="button" id="save-consumption-btn" class="btn-save">
-                        <svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em"><path d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"></path></svg>
-                        Spara bränsleförbrukning
-                    </button>
-                    <div id="saved-value-display" class="saved-value"></div>
-                 </div>
-            </div>
-
-        </form>
-
-        <div id="results-section" class="results-section">
-            <h3>Resultat</h3>
-            <div class="results-grid">
-                <div class="result-item">
-                    <h4>Total kostnad</h4>
-                    <p id="total-cost">0 kr</p>
-                </div>
-                 <div class="result-item">
-                    <h4>Kostnad per passagerare</h4>
-                    <p id="cost-per-passenger">0 kr</p>
-                </div>
-                 <div class="result-item">
-                    <h4>Förarens kostnad</h4>
-                    <p id="cost-for-driver">0 kr</p>
-                </div>
-            </div>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="index.html" class="logo">vad kostar bilresan..</a>
+            <nav class="main-nav">
+                <a href="index.html" class="active">Kalkylator</a>
+                <a href="om-oss.html">Om oss</a>
+                <a href="kontakta-oss.html">Kontakta oss</a>
+            </nav>
         </div>
+    </header>
 
-    </div>
+    <main class="main-container">
+        <!-- Advanced Calculator Section -->
+        <section class="calculator-section">
+            <form id="calculator-form" class="calculator-form">
+                <div class="form-grid">
+                    <!-- Left Column -->
+                    <div class="grid-col">
+                        <div class="input-group"><label for="start-location">Start</label><input type="text" id="start-location" placeholder="t.ex. Stockholm"></div>
+                        <div class="input-group"><label for="fuel-type">Drivmedel</label><select id="fuel-type"><option value="19.50">Bensin</option><option value="18.90">Diesel</option><option value="25.00">El (kr/kWh)</option></select></div>
+                        <div class="input-group"><label for="consumption">Bränsleförbrukning</label><div class="input-with-unit"><input type="number" step="0.1" id="consumption" placeholder="Ex: 6.7"><span>l/100km</span></div></div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="grid-col">
+                        <div class="input-group"><label for="end-location">Mål</label><input type="text" id="end-location" placeholder="t.ex. Göteborg"></div>
+                        <div class="input-group"><label for="fuel-price">Bränslekostnad</label><div class="input-with-unit"><input type="number" step="0.01" id="fuel-price" placeholder="16.89"><span>kr/l</span></div></div>
+                        <div class="input-group"><label for="people">Hur många i bilen?</label><div class="input-with-unit"><input type="number" id="people" value="1" min="1"><span>personer</span></div></div>
+                    </div>
+                </div>
+                <div class="distance-row">
+                    <div class="input-group distance-group"><label>Beräknat avstånd</label><div class="input-with-unit"><input type="number" id="distance" readonly><span>km</span></div></div>
+                    <div class="checkbox-group"><input type="checkbox" id="round-trip"><label for="round-trip">Tur & Retur</label></div>
+                </div>
+                <div class="advanced-toggle"><button type="button" id="advanced-toggle-btn">Avancerat <span class="arrow"></span></button></div>
+                <div id="advanced-section" class="advanced-section">
+                    <div class="divider"></div><h4>Förarens betalning</h4><p class="info-text">Kanske ska föraren betala mindre än passagerarna eftersom hen körde hela vägen?</p>
+                    <div class="slider-group"><input type="range" id="driver-share" min="0" max="100" value="100" class="slider"><div class="input-with-unit percent-input"><input type="number" id="driver-share-input" min="0" max="100" value="100"><span>%</span></div></div>
+                    <h4>Spara dina val</h4><p class="info-text">Detta kommer bara sparas på den enheten du använder nu.</p>
+                    <div class="save-group"><button type="button" id="save-consumption-btn" class="btn-save"><svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em"><path d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"></path></svg>Spara bränsleförbrukning</button><div id="saved-value-display" class="saved-value"></div></div>
+                </div>
+            </form>
+            <div id="results-section" class="results-section">
+                <h3>Resultat</h3>
+                <div class="results-grid">
+                    <div class="result-item"><h4>Total kostnad</h4><p id="total-cost">0 kr</p></div>
+                    <div class="result-item"><h4>Kostnad per passagerare</h4><p id="cost-per-passenger">0 kr</p></div>
+                    <div class="result-item"><h4>Förarens kostnad</h4><p id="cost-for-driver">0 kr</p></div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Content Section -->
+        <section class="content-section">
+            <h2>Vad kostar bilresan? – Räkna ut bensinkostnaden snabbt och enkelt</h2>
+            <p>Välkommen till Sveriges smartaste verktyg för att räkna ut bensinkostnad och få svar på frågan: vad kostar bilresan? Oavsett om du pendlar, planerar en semester eller bara vill ha bättre koll på dina utgifter, hjälper vår kalkylator dig att enkelt ta reda på hur mycket din resa faktiskt kostar i bränsle.</p>
+            <h3>Vanliga frågor – Vad kostar bilresan egentligen?</h3>
+            <h4>❓ Hur exakt är uträkningen?</h4>
+            <p>Resultatet är en uppskattning baserat på dina inmatade uppgifter. Faktiska kostnader kan variera beroende på körstil, trafik och vägtyp.</p>
+            <h4>❓ Kan jag använda verktyget för diesel?</h4>
+            <p>Ja! Välj bara "Diesel" i menyn för drivmedel så anpassas uträkningen automatiskt.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="om-oss.html">Om oss</a>
+            <a href="kontakta-oss.html">Kontakta oss</a>
+            <a href="integritetspolicy.html">Integritetspolicy</a>
+        </div>
+        <p>© 2024 Vad kostar bilresan..</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
