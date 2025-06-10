@@ -4,96 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Meta Title and Description for SEO -->
-    <title>Vad kostar bilresan? Räkna ut bränslekostnaden för din resa</title>
-    <meta name="description" content="Räkna ut bränslekostnaden för din bilresa snabbt och enkelt med vår kalkylator. Få svar på vad resan kostar i bensin eller diesel baserat på avstånd, pris och förbrukning.">
+    <title>Vad kostar bilresan? Räkna ut bränslekostnad och dela notan</title>
+    <meta name="description" content="Avancerad kalkylator för att beräkna den totala bränslekostnaden för din resa och dela upp den per person. Ange start, mål och hur många ni är i bilen.">
 
-    <!-- Link to CSS file -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 
-    <!-- Favicon (Car Emoji) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="header-content">
-             <h1>vad kostar bilresan..</h1>
-        </div>
-    </header>
+    <div class="main-container">
+        <form id="calculator-form" class="calculator-form">
+            
+            <div class="form-grid">
+                <div class="grid-col">
+                    <div class="input-group">
+                        <label for="start-location">Start</label>
+                        <input type="text" id="start-location" placeholder="t.ex. Stockholm">
+                    </div>
 
-    <main class="main-container">
-        <!-- Calculator Section -->
-        <section class="calculator-section">
-            <div class="calculator-card">
-                <h2>Räkna ut din resekostnad</h2>
-                <form id="fuel-cost-form">
                     <div class="input-group">
-                        <label for="distance">Avstånd (mil)</label>
-                        <input type="number" id="distance" name="distance" placeholder="t.ex. 50" required min="0.1" step="0.1">
+                        <label for="fuel-type">Drivmedel</label>
+                        <select id="fuel-type">
+                            <option value="19.50">Bensin</option>
+                            <option value="18.90">Diesel</option>
+                            <option value="25.00">El (kr/kWh)</option>
+                        </select>
                     </div>
+
                     <div class="input-group">
-                        <label for="price">Bränslepris (kr/liter)</label>
-                        <input type="number" id="price" name="price" placeholder="t.ex. 21,50" required min="0.01" step="0.01">
+                        <label for="consumption">Bränsleförbrukning</label>
+                        <div class="input-with-unit">
+                            <input type="number" step="0.1" id="consumption" placeholder="Ex: 6.7">
+                            <span>l/100km</span>
+                        </div>
                     </div>
+                </div>
+
+                <div class="grid-col">
                     <div class="input-group">
-                        <label for="consumption">Förbrukning (liter/mil)</label>
-                        <input type="number" id="consumption" name="consumption" placeholder="t.ex. 0,7" required min="0.01" step="0.01">
+                        <label for="end-location">Mål</label>
+                        <input type="text" id="end-location" placeholder="t.ex. Göteborg">
                     </div>
-                    <button type="submit">Räkna ut kostnad</button>
-                </form>
-                <div id="result-box" class="result-box-hidden">
-                    <h3>Resan kostar:</h3>
-                    <p id="result-text">0 kr</p>
+
+                    <div class="input-group">
+                        <label for="fuel-price">Bränslekostnad</label>
+                         <div class="input-with-unit">
+                            <input type="number" step="0.01" id="fuel-price" placeholder="16.89">
+                            <span>kr/l</span>
+                        </div>
+                    </div>
+
+                     <div class="input-group">
+                        <label for="people">Hur många i bilen?</label>
+                         <div class="input-with-unit">
+                            <input type="number" id="people" value="1" min="1">
+                            <span>personer</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Content Section -->
-        <section class="content-section">
-            <h2>Vad kostar bilresan? – Räkna ut bensinkostnaden snabbt och enkelt</h2>
-            <p>Välkommen till Sveriges smartaste verktyg för att räkna ut bensinkostnad och få svar på frågan: vad kostar bilresan? Oavsett om du pendlar, planerar en semester eller bara vill ha bättre koll på dina utgifter, hjälper vår kalkylator dig att enkelt ta reda på hur mycket din resa faktiskt kostar i bränsle.</p>
-            
-            <h3>Varför använda vårt verktyg för bensinkostnad?</h3>
-            <p>Att förstå vad kostar resan kan hjälpa dig att planera bättre, minska onödiga utgifter och ta smartare beslut i vardagen. Oavsett om du kör bensin- eller dieselbil, är vårt verktyg optimerat för att ge dig en exakt uppskattning av bensinkostnad per mil.</p>
-
-            <h4>Så fungerar det – Exempel på räkning</h4>
-            <p>Om du ska åka 50 mil och din bil förbrukar 0,7 liter/mil med ett bensinpris på 21 kr/liter, ser uträkningen ut så här:</p>
-            <div class="example-box">
-                <code>50 mil × 0,7 liter/mil = 35 liter</code>
-                <code>35 liter × 21 kr/liter = 735 kr</code>
-                <p><strong>Din resa kostar alltså 735 kronor i bränsle.</strong></p>
+            <div class="distance-row">
+                 <div class="input-group distance-group">
+                    <label>Beräknat avstånd</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="distance" readonly>
+                        <span>km</span>
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="round-trip">
+                    <label for="round-trip">Tur & Retur</label>
+                </div>
             </div>
 
-            <h3>Vanliga frågor – Vad kostar bilresan egentligen?</h3>
-            <h4>❓ Hur exakt är uträkningen?</h4>
-            <p>Resultatet är en uppskattning baserat på dina inmatade uppgifter. Faktiska kostnader kan variera beroende på körstil, trafik och vägtyp.</p>
+            <div class="advanced-toggle">
+                <button type="button" id="advanced-toggle-btn">Avancerat <span class="arrow"></span></button>
+            </div>
 
-            <h4>❓ Vad är en normal bensinkostnad per mil?</h4>
-            <p>En vanlig bensinbil drar i genomsnitt mellan 0,6–1,0 liter/mil. Med ett bensinpris på cirka 21 kr innebär det en bensinkostnad per mil på mellan 12 och 21 kronor.</p>
+            <div id="advanced-section" class="advanced-section">
+                <div class="divider"></div>
+                <h4>Förarens betalning</h4>
+                <p class="info-text">Kanske ska föraren betala mindre än passagerarna eftersom hen körde hela vägen?</p>
+                <div class="slider-group">
+                    <input type="range" id="driver-share" min="0" max="100" value="100" class="slider">
+                    <div class="input-with-unit percent-input">
+                        <input type="number" id="driver-share-input" min="0" max="100" value="100">
+                        <span>%</span>
+                    </div>
+                </div>
 
-            <h4>❓ Kan jag använda verktyget för diesel?</h4>
-            <p>Ja! Skriv bara in dieselpriset i stället för bensinpriset och din bils faktiska förbrukning – uträkningen fungerar precis likadant.</p>
+                <h4>Spara dina val</h4>
+                 <p class="info-text">Detta kommer bara sparas på den enheten du använder nu.</p>
+                 <div class="save-group">
+                     <button type="button" id="save-consumption-btn" class="btn-save">
+                        <svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em"><path d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"></path></svg>
+                        Spara bränsleförbrukning
+                    </button>
+                    <div id="saved-value-display" class="saved-value"></div>
+                 </div>
+            </div>
 
-            <h3>Planera smartare – räkna bensinkostnad innan du kör</h3>
-            <p>Att veta hur mycket kostar bilresan innan du sätter dig bakom ratten är inte bara smart – det är ekonomiskt. Vårt kostnadsfria verktyg ger dig full kontroll över dina transportkostnader och hjälper dig att ta medvetna beslut kring dina resor.</p>
-            
-            <h3>Testa vår bensinkostnadskalkylator nu</h3>
-            <p>Använd vårt enkla verktyg och ta reda på vad kostar bilresan redan idag. Oavsett om du ska till jobbet, sommarstugan eller längre resor i landet – det är alltid bra att ha koll på kostnaden.</p>
-        </section>
-    </main>
+        </form>
 
-    <footer class="site-footer">
-        <p>🛣️ Räkna bensinkostnad – snabbt, enkelt och gratis!</p>
-    </footer>
+        <div id="results-section" class="results-section">
+            <h3>Resultat</h3>
+            <div class="results-grid">
+                <div class="result-item">
+                    <h4>Total kostnad</h4>
+                    <p id="total-cost">0 kr</p>
+                </div>
+                 <div class="result-item">
+                    <h4>Kostnad per passagerare</h4>
+                    <p id="cost-per-passenger">0 kr</p>
+                </div>
+                 <div class="result-item">
+                    <h4>Förarens kostnad</h4>
+                    <p id="cost-for-driver">0 kr</p>
+                </div>
+            </div>
+        </div>
 
-    <!-- Link to JavaScript file -->
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
