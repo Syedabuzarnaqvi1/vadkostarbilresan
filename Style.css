@@ -1,14 +1,15 @@
 /* --- CSS Variables and Root Styles --- */
 :root {
-    --bg-color: #f6f9fc;
-    --primary-text: #32325d;
-    --secondary-text: #525f7f;
+    --bg-color: #f0f2f5;
     --card-bg: #ffffff;
-    --shadow-color: rgba(50, 50, 93, 0.1);
-    --shadow-hover-color: rgba(50, 50, 93, 0.15);
-    --border-color: #e6ebf1;
-    --accent-color-1: #6772e5;
-    --accent-color-2: #87bbfd;
+    --primary-text: #1d2129;
+    --secondary-text: #606770;
+    --border-color: #ccd0d5;
+    --accent-color: #2e81f4;
+    --accent-color-dark: #1877f2;
+    --positive-color: #42b72a;
+    --positive-color-dark: #36a420;
+    --slider-track: #e4e6eb;
     --heading-font: 'Poppins', sans-serif;
     --body-font: 'Inter', sans-serif;
 }
@@ -16,203 +17,246 @@
 /* --- General Body and Typography --- */
 body {
     font-family: var(--body-font);
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     background-color: var(--bg-color);
-    color: var(--secondary-text);
+    color: var(--primary-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4 {
-    font-family: var(--heading-font);
-    color: var(--primary-text);
-    font-weight: 800;
-}
-
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.25rem; }
-h4 { font-size: 1.1rem; }
-p { margin-bottom: 1rem; }
-
-/* --- Header and Footer --- */
-.site-header {
-    background: var(--card-bg);
-    padding: 1.5rem 1rem;
-    box-shadow: var(--shadow-color) 0px 2px 4px;
-    text-align: center;
-}
-
-.site-header h1 {
-    font-size: 2rem;
-    margin: 0;
-    background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.site-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 1rem;
-    color: var(--secondary-text);
-}
-
 /* --- Main Layout --- */
 .main-container {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 0 1rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
-/* --- The Calculator Card --- */
-.calculator-card {
+/* --- Calculator Form Card --- */
+.calculator-form {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 2rem 2.5rem;
-    box-shadow: var(--shadow-color) 0px 13px 27px -5px, rgba(0, 0, 0, 0.2) 0px 8px 16px -8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.calculator-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover-color) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
 }
 
-.calculator-card h2 {
-    text-align: center;
-    margin: 0 0 2rem 0;
+.grid-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .input-group {
-    margin-bottom: 1.5rem;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group label {
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--primary-text);
     margin-bottom: 0.5rem;
-    display: block;
 }
 
-.input-group input {
+.input-group input, .input-group select {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 1rem;
     font-family: var(--body-font);
-    color: var(--primary-text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background-color: #f6f9fc;
+    background-color: #f5f6f7;
     box-sizing: border-box;
 }
 
-.input-group input:focus {
+.input-group input:focus, .input-group select:focus {
     outline: none;
-    border-color: var(--accent-color-1);
-    box-shadow: 0 0 0 2px rgba(103, 114, 229, 0.2);
-    background-color: var(--card-bg);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(46, 129, 244, 0.2);
 }
 
-button[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    font-family: var(--body-font);
-    color: white;
-    background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-top: 1rem;
+.input-with-unit {
+    display: flex;
+    align-items: center;
 }
 
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.input-with-unit input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
 }
-
-/* --- Result Box Animation and Style --- */
-#result-box {
-    text-align: center;
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: linear-gradient(45deg, #e6e9ff, #eff6ff);
-    color: var(--primary-text);
-}
-
-.result-box-hidden {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.result-box-visible {
-    margin-top: 2rem;
-    max-height: 200px;
-    opacity: 1;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#result-box h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1rem;
-    font-weight: 700;
+.input-with-unit span {
+    padding: 10px;
+    background-color: #e4e6eb;
+    border: 1px solid var(--border-color);
+    border-left: none;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 0.9rem;
     color: var(--secondary-text);
 }
 
-#result-text {
-    margin: 0;
-    font-size: 2.75rem;
-    font-weight: 800;
-    color: var(--accent-color-1);
+.distance-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.distance-group {
+    flex-grow: 1;
+}
+.distance-group input {
+    background-color: #e4e6eb;
+    font-weight: 700;
 }
 
-/* --- Content Styling --- */
-.content-section {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 12px;
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 10px;
 }
 
-.example-box {
-    background-color: var(--bg-color);
-    border-left: 4px solid var(--accent-color-2);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 0 8px 8px 0;
+/* --- Advanced Section --- */
+.advanced-toggle { margin-top: 1.5rem; }
+.advanced-toggle button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.advanced-toggle .arrow {
+    border: solid var(--accent-color);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+.advanced-toggle button.open .arrow {
+    transform: rotate(-135deg);
 }
 
-.example-box code {
-    display: block;
-    font-family: 'Menlo', 'Monaco', monospace;
+.advanced-section {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+.advanced-section.open {
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.4s ease-in;
+}
+.divider { border-top: 1px solid var(--border-color); margin: 1.5rem 0; }
+.info-text { font-size: 0.9rem; color: var(--secondary-text); margin: -0.5rem 0 1rem 0; }
+
+/* --- Slider --- */
+.slider-group { display: flex; align-items: center; gap: 1rem; }
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--slider-track);
+    outline: none;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+.slider:hover { opacity: 1; }
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+.percent-input { max-width: 100px; }
+
+/* --- Save Button and Display --- */
+.save-group { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+.btn-save {
+    background-color: var(--positive-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+.btn-save:hover { background-color: var(--positive-color-dark); }
+.saved-value { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+.saved-value span { font-weight: 700; }
+.delete-btn {
+    background: #e4e6eb;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--secondary-text);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* --- Results Section --- */
+.results-section {
+    background-color: var(--card-bg);
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.results-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    text-align: center;
+}
+.result-item h4 {
+    margin: 0 0 0.25rem 0;
     font-size: 1rem;
-    color: var(--primary-text);
-    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
 }
-.example-box p { margin: 1rem 0 0 0; }
+.result-item p {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
 
 /* --- Responsive Design --- */
 @media (max-width: 600px) {
-    .main-container {
-        margin: 1.5rem auto;
+    .form-grid {
+        grid-template-columns: 1fr;
     }
-    .calculator-card, .content-section {
-        padding: 1.5rem;
+    .distance-row {
+        flex-direction: column;
+        align-items: stretch;
     }
-    .site-header h1 {
-        font-size: 1.5rem;
-    }
-    h2 { font-size: 1.5rem; }
-    #result-text { font-size: 2.25rem; }
 }
